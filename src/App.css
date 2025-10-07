@@ -1,244 +1,191 @@
-/* Custom Hero Section */
+/* -------------------- Body & Global -------------------- */
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #f0f4f8, #e0e6f7 70%); /* overall light pastel background */
+  color: #1f1f1f;
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  transition: background 0.3s ease;
+}
+
+/* -------------------- HERO SECTION (DARK THEME) -------------------- */
 .hero-section {
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+  background: linear-gradient(135deg, #0c0c14, #05060a 70%); /* dark hero */
   position: relative;
   overflow: hidden;
+  color: #fff;
+  padding: 5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  border-radius: 0;
 }
 
 .hero-section::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-  opacity: 0.1;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(0, 255, 255, 0.05), transparent 70%),
+              radial-gradient(circle at 70% 70%, rgba(255, 0, 255, 0.05), transparent 70%);
+  filter: blur(80px);
+  z-index: 0;
 }
 
-/* Form Enhancements */
-.form-control, .form-select {
-  border: 2px solid #e9ecef;
-  transition: all 0.3s ease;
-}
-
-.form-control:focus, .form-select:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.15);
-  transform: translateY(-1px);
-}
-
-.form-label {
-  color: #495057;
-  margin-bottom: 0.75rem;
-}
-
-.form-label i {
-  width: 20px;
-}
-
-/* Card Enhancements */
-.card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-2px);
-}
-
-.card-header {
-  border-bottom: 3px solid #007bff;
-}
-
-/* Button Enhancements */
-.btn-primary {
-  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-  border: none;
-  transition: all 0.3s ease;
-}
-
-.btn-primary:hover {
-  background: linear-gradient(135deg, #0056b3 0%, #004085 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
-}
-
-/* Textarea Enhancements */
-textarea.form-control {
-  resize: vertical;
-  min-height: 120px;
-}
-
-/* Gemini Response Styling */
-.response-container {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
-
-.gemini-response {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: 0;
-  padding: 2rem;
-}
-
-.response-sections {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.response-section {
-  background: white;
-  border-radius: 12px;
-  padding: 2rem;
-  border-left: 5px solid #007bff;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.response-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(45deg, transparent 30%, rgba(0, 123, 255, 0.05) 100%);
-  border-radius: 50%;
-  transform: translate(30px, -30px);
-}
-
-.response-section:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
-
-.section-title {
-  color: #007bff;
-  font-size: 1.4rem;
+.hero-section h1,
+.hero-section .display-4 {
   font-weight: 700;
-  margin-bottom: 1.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 2px solid #e9ecef;
-  position: relative;
-}
-
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 50px;
-  height: 2px;
-  background: #007bff;
-}
-
-.section-content {
-  line-height: 1.7;
+  color: #ffffff;
+  background: linear-gradient(90deg, #00c6ff, #ff00b8, #00ffaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 25px rgba(255, 255, 255, 0.1);
   position: relative;
   z-index: 1;
 }
 
-.section-content p {
-  margin-bottom: 1rem;
-  color: #444;
-  font-size: 1.05rem;
+/* -------------------- Cards -------------------- */
+.card {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #1f1f1f;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
 }
 
-.bullet-point {
-  margin-bottom: 0.75rem;
-  padding-left: 1.5rem;
-  color: #555;
-  position: relative;
-  font-size: 1.05rem;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(160, 196, 255, 0.25);
 }
 
-.bullet-point::before {
-  content: '▶';
-  position: absolute;
-  left: 0;
-  color: #007bff;
-  font-size: 0.8rem;
-}
-
-.sub-header {
-  color: #495057;
-  font-size: 1.2rem;
+/* -------------------- Buttons -------------------- */
+.btn-primary {
+  background: linear-gradient(90deg, #a0c4ff, #ffd6a5);
+  border: none;
+  color: #1f1f1f;
+  border-radius: 12px;
   font-weight: 600;
-  margin: 1.5rem 0 1rem 0;
-  padding-left: 1rem;
-  border-left: 3px solid #007bff;
-  background: rgba(0, 123, 255, 0.05);
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+  letter-spacing: 0.3px;
+  box-shadow: 0 4px 15px rgba(160, 196, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 35px rgba(160, 196, 255, 0.35);
+  background: linear-gradient(90deg, #ffd6a5, #a0c4ff);
+}
+
+/* -------------------- Response Sections -------------------- */
+.response-section {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(15px);
+  border-radius: 18px;
+  padding: 2rem;
+  color: #1f1f1f;
+  border-left: 4px solid #a0c4ff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.response-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 30px rgba(160, 196, 255, 0.25);
+}
+
+/* -------------------- Section Titles -------------------- */
+.section-title {
+  color: #a0c4ff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  border-bottom: 2px solid rgba(31,31,31,0.1);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.section-content {
+  color: #1f1f1f;
+  line-height: 1.7;
 }
 
 .section-content strong {
-  color: #007bff;
-  font-weight: 600;
+  color: #ffd6a5;
 }
 
-/* Loading Animation */
-.btn-primary:disabled {
-  position: relative;
-  overflow: hidden;
+/* -------------------- Scrollbar -------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #a0c4ff, #ffd6a5);
+  border-radius: 10px;
 }
 
-.btn-primary:disabled::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-  animation: loading 1.5s infinite;
+/* -------------------- Animations -------------------- */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
 }
 
-@keyframes loading {
-  0% { left: -100%; }
-  100% { left: 100%; }
-}
-
-/* Responsive Design */
+/* -------------------- Responsive -------------------- */
 @media (max-width: 768px) {
   .hero-section {
-    padding: 3rem 0 !important;
+    padding: 3rem 1rem;
   }
-  
   .display-4 {
-    font-size: 2rem !important;
-  }
-  
-  .gemini-response {
-    padding: 1rem;
-  }
-  
-  .response-section {
-    padding: 1.5rem;
-  }
-  
-  .section-title {
-    font-size: 1.2rem;
-  }
-  
-  .card-body {
-    padding: 1.5rem !important;
+    font-size: 2.2rem;
   }
 }
 
-@media (max-width: 576px) {
-  .container {
-    padding: 0 15px;
-  }
-  
-  .col-lg-8 {
-    padding: 0;
-  }
-  
-  .response-section {
-    padding: 1rem;
-  }
+/* -------------------- PREMIUM PASTEL FORM BOXES -------------------- */
+.form-control,
+textarea,
+select,
+input[type="file"] {
+  background: rgba(255, 255, 255, 0.3);       /* soft pastel glass */
+  color: #1f1f1f;                              /* readable dark text */
+  border: 1px solid rgba(255, 255, 255, 0.4);  /* soft elegant border */
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  backdrop-filter: blur(12px);                 /* glass effect */
+  transition: all 0.3s ease;
+  background-image: linear-gradient(120deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+  background-size: 400% 100%;
+}
+
+/* Focus / Hover Effect with shimmer */
+.form-control:focus,
+textarea:focus,
+select:focus,
+input[type="file"]:focus {
+  border-color: #a0c4ff;
+  box-shadow: 0 0 15px rgba(160, 196, 255, 0.25);
+  background: rgba(255, 255, 255, 0.4);
+  color: #1f1f1f;
+  outline: none;
+  transform: translateY(-1px);
+  animation: shimmer 2.5s linear infinite;
+  background-image: linear-gradient(120deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.05) 50%, rgba(255,255,255,0.25) 100%);
+  background-size: 400% 100%;
+}
+
+/* Placeholder text */
+::placeholder {
+  color: rgba(31, 31, 31, 0.5);
+  font-weight: 400;
+}
+
+/* Textarea adjustments */
+textarea.form-control {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* File input hover */
+input[type="file"]:hover {
+  border-color: #a0c4ff;
+  box-shadow: 0 0 8px rgba(160, 196, 255, 0.25);
+  background: rgba(255, 255, 255, 0.35);
 }

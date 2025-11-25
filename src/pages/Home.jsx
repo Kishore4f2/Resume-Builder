@@ -36,24 +36,32 @@ function HomePage() {
                         const titleLine = lines[0];
                         const content = lines.slice(1).join('\n').trim();
                         
-                        // Extract clean title
-                        const title = titleLine.replace(/^\d+\.\s\*\*/, '').replace(/\*\*$/, '').replace(/^\*\*\d+\./, '').trim();
+                        // Extract clean title and index number
+                        const numberMatch = titleLine.match(/^\**?(\d+)\./);
+                        const number = numberMatch ? numberMatch[1] : index + 1;
+                        const title = titleLine
+                          .replace(/^\d+\.\s\*\*/, '')
+                          .replace(/\*\*$/, '')
+                          .replace(/^\*\*\d+\./, '')
+                          .replace(/^\*\*/, '')
+                          .replace(/\*\*$/, '')
+                          .trim();
                         
                         return (
                             <div key={index} className="response-section">
-                                <h3 className="section-title">{title}</h3>
-                                <div className="section-content">
-                                    {formatContent(content)}
+                                <div className="section-header">
+                                    <div className="section-index">{number}</div>
+                                    <h3 className="section-title-text">{title}</h3>
                                 </div>
+                                <div className="section-divider" />
+                                <div className="section-content">{formatContent(content)}</div>
                             </div>
                         );
                     } else {
                         // Handle any remaining content
                         return (
                             <div key={index} className="response-section">
-                                <div className="section-content">
-                                    {formatContent(section.trim())}
-                                </div>
+                                <div className="section-content">{formatContent(section.trim())}</div>
                             </div>
                         );
                     }
@@ -65,40 +73,68 @@ function HomePage() {
     // Function to format content within sections
     const formatContent = (content) => {
         if (!content) return null;
-        
-        return content.split('\n').map((line, index) => {
-            const trimmedLine = line.trim();
-            if (!trimmedLine) return <br key={index} />;
-            
-            // Handle bullet points
-            if (trimmedLine.startsWith('- ')) {
-                return (
-                    <div key={index} className="bullet-point">
-                        • {trimmedLine.substring(2)}
-                    </div>
+
+        const lines = content.split('\n');
+        const rendered = [];
+        let currentList = [];
+
+        function flushList(idxBase) {
+            if (currentList.length === 0) return null;
+            const list = (
+                <ul key={`list-${idxBase}`} className="bullet-list">
+                    {currentList.map((item, i) => (
+                        <li key={`li-${idxBase}-${i}`} className="bullet-item">{item}</li>
+                    ))}
+                </ul>
+            );
+            currentList = [];
+            return list;
+        }
+
+        lines.forEach((rawLine, i) => {
+            const line = rawLine.trim();
+            if (!line) {
+                const flushed = flushList(`gap-${i}`);
+                if (flushed) rendered.push(flushed);
+                return;
+            }
+
+            // Sub-headers or emphasized lines that end with ':'
+            if (line.endsWith(':')) {
+                const flushed = flushList(`sub-${i}`);
+                if (flushed) rendered.push(flushed);
+                rendered.push(<h4 key={`subheader-${i}`} className="sub-header">{line}</h4>);
+                return;
+            }
+
+            // Bulleted items start with "- "
+            if (line.startsWith('- ')) {
+                // Bold replacement for **text**
+                const parts = line.substring(2).split('**');
+                const jsx = parts.map((part, idx) =>
+                    idx % 2 === 1 ? <strong key={`b-${i}-${idx}`}>{part}</strong> : part
                 );
+                currentList.push(<>{jsx}</>);
+                return;
             }
-            
-            // Handle bold text
-            if (trimmedLine.includes('**')) {
-                const parts = trimmedLine.split('**');
-                return (
-                    <p key={index}>
-                        {parts.map((part, partIndex) => 
-                            partIndex % 2 === 1 ? <strong key={partIndex}>{part}</strong> : part
-                        )}
-                    </p>
-                );
-            }
-            
-            // Handle sub-headers or emphasized lines
-            if (trimmedLine.endsWith(':')) {
-                return <h4 key={index} className="sub-header">{trimmedLine}</h4>;
-            }
-            
-            // Regular paragraph
-            return <p key={index}>{trimmedLine}</p>;
+
+            // Otherwise, regular paragraph with bold support
+            const parts = line.split('**');
+            const paragraph = (
+                <p key={`p-${i}`} className="paragraph">
+                    {parts.map((part, idx) =>
+                        idx % 2 === 1 ? <strong key={`pb-${i}-${idx}`}>{part}</strong> : part
+                    )}
+                </p>
+            );
+            const flushed = flushList(`p-${i}`);
+            if (flushed) rendered.push(flushed);
+            rendered.push(paragraph);
         });
+
+        const flushed = flushList('final');
+        if (flushed) rendered.push(flushed);
+        return rendered;
     };
 
     async function handleGenerateData() {

@@ -1,0 +1,27 @@
+@import "./styles/theme.css";
+
+/* Base resets and refined selections */
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: rgba(212, 175, 55, 0.25);
+  color: var(--text-100);
+}
+
+/* Lux scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #d4af37, #b4872e);
+  border-radius: 10px;
+}
+
+/* Smooth transitions globally */
+body, button, input, select, textarea {
+  transition: background-color .25s var(--ease-smooth), color .25s var(--ease-smooth), border-color .25s var(--ease-smooth);
+}
+
+

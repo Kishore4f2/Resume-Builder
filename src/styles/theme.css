@@ -1,0 +1,40 @@
+:root {
+  --obsidian-950: #0a0b0f;
+  --obsidian-900: #0e1016;
+  --obsidian-800: #141824;
+  --panel-700: #1a2130;
+
+  --text-100: #f8f7f3;
+  --text-300: #d6d0c4;
+
+  --gold-300: #f4e3b7;
+  --gold-500: #e9c66e;
+  --gold-700: #d4af37;
+  --gold-gradient: linear-gradient(135deg, #f6e27a 0%, #d4af37 35%, #f6e27a 70%, #b4872e 100%);
+
+  --glow-gold: 0 0 32px rgba(212, 175, 55, 0.35), 0 0 8px rgba(246, 226, 122, 0.5);
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --ease-smooth: cubic-bezier(.22, .61, .36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(1200px 800px at 20% 10%, #151822 0%, transparent 60%),
+    radial-gradient(1000px 700px at 80% 20%, #0d111b 0%, transparent 50%),
+    var(--obsidian-950);
+  color: var(--text-100);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* Headings use Playfair for a luxury editorial vibe */
+h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4 {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  letter-spacing: 0.4px;
+}
+
+

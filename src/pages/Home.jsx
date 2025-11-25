@@ -1,6 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import "../App.css";
+import MotionReveal from "../components/MotionReveal";
+import GlowCard from "../components/GlowCard";
+import LuxuryButton from "../components/LuxuryButton";
 function HomePage() {
     const [formData, setFormData] = useState({
         companyName: "",
@@ -156,17 +159,19 @@ Ensure the response is structured, clear, and easy to display in a React app.
     }
     //AIzaSyD8NX5Adkmx-S81fo45RTcmPzQrwGDrLnA
     return (
-        <div className="container-fluid min-vh-100 bg-light">
+        <div className="container-fluid min-vh-100">
             {/* Header Section */}
-            <div className="hero-section bg-primary text-white py-5 mb-4">
+            <div className="hero-section text-white mb-4">
                 <div className="container">
-                    <div className="row justify-content-center text-center">
-                        <div className="col-lg-8">
-                            <h1 className="display-4 fw-bold mb-3">AI Resume Builder</h1>
-                            <h4>By Satya Kishore</h4>
-                            <p className="lead mb-0">Create professional cover letters and optimize your resume with AI-powered insights</p>
+                    <MotionReveal>
+                        <div className="row justify-content-center text-center">
+                            <div className="col-lg-8">
+                                <h1 className="display-4 fw-bold mb-3">AI Resume Builder</h1>
+                                <h4>By Satya Kishore</h4>
+                                <p className="lead mb-0">Create professional cover letters and optimize your resume with AI-powered insights</p>
+                            </div>
                         </div>
-                    </div>
+                    </MotionReveal>
                 </div>
             </div>
 
@@ -174,132 +179,136 @@ Ensure the response is structured, clear, and easy to display in a React app.
                 <div className="row justify-content-center">
                     <div className="col-lg-8">
                         {/* Form Card */}
-                        <div className="card shadow-lg border-0 mb-5">
-                            <div className="card-header bg-white py-4">
-                                <h3 className="card-title text-center mb-0 text-primary">
-                                    <i className="bi bi-file-earmark-person me-2"></i>
-                                    Resume & Cover Letter Generator
-                                </h3>
-                            </div>
-                            <div className="card-body p-4">
-                                <form>
-                                    <div className="row">
-                                        <div className="col-md-6 mb-4">
-                                            <label htmlFor="companyName" className="form-label fw-semibold">
-                                                <i className="bi bi-building me-2 text-primary"></i>
-                                                Company Name
-                                            </label>
-                                            <input 
-                                                type="text" 
-                                                className="form-control form-control-lg" 
-                                                id="companyName"
-                                                placeholder="Enter company name"
-                                                value={formData.companyName} 
-                                                onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
-                                            />
-                                            <div className="form-text">Company you are applying to</div>
+                        <MotionReveal>
+                            <GlowCard className="mb-5">
+                                <div className="card-header py-4">
+                                    <h3 className="card-title text-center mb-0" style={{ color: 'var(--gold-500)' }}>
+                                        <i className="bi bi-file-earmark-person me-2"></i>
+                                        Resume & Cover Letter Generator
+                                    </h3>
+                                </div>
+                                <div className="card-body p-4">
+                                    <form>
+                                        <div className="row">
+                                            <div className="col-md-6 mb-4">
+                                                <label htmlFor="companyName" className="form-label fw-semibold">
+                                                    <i className="bi bi-building me-2" style={{ color: 'var(--gold-500)' }}></i>
+                                                    Company Name
+                                                </label>
+                                                <input 
+                                                    type="text" 
+                                                    className="form-control form-control-lg" 
+                                                    id="companyName"
+                                                    placeholder="Enter company name"
+                                                    value={formData.companyName} 
+                                                    onChange={(e) => setFormData({ ...formData, companyName: e.target.value })}
+                                                />
+                                                <div className="form-text">Company you are applying to</div>
+                                            </div>
+
+                                            <div className="col-md-6 mb-4">
+                                                <label htmlFor="applyingAsA" className="form-label fw-semibold">
+                                                    <i className="bi bi-person-badge me-2" style={{ color: 'var(--gold-500)' }}></i>
+                                                    Experience Level
+                                                </label>
+                                                <select 
+                                                    className="form-select form-select-lg" 
+                                                    id="applyingAsA"
+                                                    value={formData.applyingAsA} 
+                                                    onChange={(e) => setFormData({ ...formData, applyingAsA: e.target.value })}
+                                                >
+                                                    <option value="Fresher">Fresher</option>
+                                                    <option value="Experienced">Experienced</option>
+                                                </select>
+                                                <div className="form-text">Are you applying as a fresher or experienced person</div>
+                                            </div>
                                         </div>
 
-                                        <div className="col-md-6 mb-4">
-                                            <label htmlFor="applyingAsA" className="form-label fw-semibold">
-                                                <i className="bi bi-person-badge me-2 text-primary"></i>
-                                                Experience Level
+                                        <div className="mb-4">
+                                            <label htmlFor="coverLetterTone" className="form-label fw-semibold">
+                                                <i className="bi bi-chat-square-text me-2" style={{ color: 'var(--gold-500)' }}></i>
+                                                Cover Letter Tone
                                             </label>
                                             <select 
                                                 className="form-select form-select-lg" 
-                                                id="applyingAsA"
-                                                value={formData.applyingAsA} 
-                                                onChange={(e) => setFormData({ ...formData, applyingAsA: e.target.value })}
+                                                id="coverLetterTone"
+                                                value={formData.coverLetterTone} 
+                                                onChange={(e) => setFormData({ ...formData, coverLetterTone: e.target.value })}
                                             >
-                                                <option value="Fresher">Fresher</option>
-                                                <option value="Experienced">Experienced</option>
+                                                <option value="Formal">Formal</option>
+                                                <option value="Informal">Informal</option>
+                                                <option value="Casual">Casual</option>
                                             </select>
-                                            <div className="form-text">Are you applying as a fresher or experienced person</div>
+                                            <div className="form-text">Select the tone of your cover letter</div>
                                         </div>
-                                    </div>
 
-                                    <div className="mb-4">
-                                        <label htmlFor="coverLetterTone" className="form-label fw-semibold">
-                                            <i className="bi bi-chat-square-text me-2 text-primary"></i>
-                                            Cover Letter Tone
-                                        </label>
-                                        <select 
-                                            className="form-select form-select-lg" 
-                                            id="coverLetterTone"
-                                            value={formData.coverLetterTone} 
-                                            onChange={(e) => setFormData({ ...formData, coverLetterTone: e.target.value })}
-                                        >
-                                            <option value="Formal">Formal</option>
-                                            <option value="Informal">Informal</option>
-                                            <option value="Casual">Casual</option>
-                                        </select>
-                                        <div className="form-text">Select the tone of your cover letter</div>
-                                    </div>
+                                        <div className="mb-4">
+                                            <label className="form-label fw-semibold" htmlFor="jobDescription">
+                                                <i className="bi bi-file-text me-2" style={{ color: 'var(--gold-500)' }}></i>
+                                                Job Description
+                                            </label>
+                                            <textarea 
+                                                name="jobDescription" 
+                                                id="jobDescription" 
+                                                className="form-control" 
+                                                rows="6"
+                                                placeholder="Paste the job description here..."
+                                                value={formData.jobDescription} 
+                                                onChange={(e) => setFormData({ ...formData, jobDescription: e.target.value })}
+                                            ></textarea>
+                                            <div className="form-text">Paste the complete job description for better matching</div>
+                                        </div>
 
-                                    <div className="mb-4">
-                                        <label className="form-label fw-semibold" htmlFor="jobDescription">
-                                            <i className="bi bi-file-text me-2 text-primary"></i>
-                                            Job Description
-                                        </label>
-                                        <textarea 
-                                            name="jobDescription" 
-                                            id="jobDescription" 
-                                            className="form-control" 
-                                            rows="6"
-                                            placeholder="Paste the job description here..."
-                                            value={formData.jobDescription} 
-                                            onChange={(e) => setFormData({ ...formData, jobDescription: e.target.value })}
-                                        ></textarea>
-                                        <div className="form-text">Paste the complete job description for better matching</div>
-                                    </div>
+                                        <div className="mb-4">
+                                            <label className="form-label fw-semibold" htmlFor="currentResume">
+                                                <i className="bi bi-file-earmark-text me-2" style={{ color: 'var(--gold-500)' }}></i>
+                                                Current Resume (Optional)
+                                            </label>
+                                            <textarea 
+                                                name="currentResume" 
+                                                id="currentResume" 
+                                                className="form-control" 
+                                                rows="8"
+                                                placeholder="Paste your current resume content here (optional)..."
+                                                value={formData.currentResume} 
+                                                onChange={(e) => setFormData({ ...formData, currentResume: e.target.value })}
+                                            ></textarea>
+                                            <div className="form-text">Paste your current resume to get optimization suggestions</div>
+                                        </div>
 
-                                    <div className="mb-4">
-                                        <label className="form-label fw-semibold" htmlFor="currentResume">
-                                            <i className="bi bi-file-earmark-text me-2 text-primary"></i>
-                                            Current Resume (Optional)
-                                        </label>
-                                        <textarea 
-                                            name="currentResume" 
-                                            id="currentResume" 
-                                            className="form-control" 
-                                            rows="8"
-                                            placeholder="Paste your current resume content here (optional)..."
-                                            value={formData.currentResume} 
-                                            onChange={(e) => setFormData({ ...formData, currentResume: e.target.value })}
-                                        ></textarea>
-                                        <div className="form-text">Paste your current resume to get optimization suggestions</div>
-                                    </div>
-
-                                    <div className="d-grid">
-                                        <button 
-                                            type="button" 
-                                            className="btn btn-primary btn-lg py-3" 
-                                            onClick={handleGenerateData}
-                                        >
-                                            <i className="bi bi-magic me-2"></i>
-                                            Generate AI-Powered Resume & Cover Letter
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                                        <div className="d-grid">
+                                            <LuxuryButton 
+                                                type="button" 
+                                                className="btn-lg py-3" 
+                                                onClick={handleGenerateData}
+                                            >
+                                                <i className="bi bi-magic me-2"></i>
+                                                Generate AI-Powered Resume & Cover Letter
+                                            </LuxuryButton>
+                                        </div>
+                                    </form>
+                                </div>
+                            </GlowCard>
+                        </MotionReveal>
 
                         {/* Response Section */}
                         <div className="response-container">
                             {geminiResponse && (
-                                <div className="card shadow-lg border-0">
-                                    <div className="card-header bg-success text-white py-3">
-                                        <h3 className="card-title mb-0">
-                                            <i className="bi bi-check-circle me-2"></i>
-                                            AI Generated Results
-                                        </h3>
-                                    </div>
-                                    <div className="card-body p-0">
-                                        <div className="gemini-response">
-                                            {parseAndDisplayResponse(geminiResponse)}
+                                <MotionReveal y={24}>
+                                    <GlowCard>
+                                        <div className="card-header py-3">
+                                            <h3 className="card-title mb-0" style={{ color: 'var(--gold-500)' }}>
+                                                <i className="bi bi-check-circle me-2"></i>
+                                                AI Generated Results
+                                            </h3>
                                         </div>
-                                    </div>
-                                </div>
+                                        <div className="card-body p-0">
+                                            <div className="gemini-response">
+                                                {parseAndDisplayResponse(geminiResponse)}
+                                            </div>
+                                        </div>
+                                    </GlowCard>
+                                </MotionReveal>
                             )}
                         </div>
                     </div>
